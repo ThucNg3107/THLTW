@@ -1,0 +1,48 @@
+﻿@model NguyenHienThuc_2280603165.Models.Product
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+	ViewData["Title"] = "Add Product";
+}
+<h1>Add Product</h1>
+<form asp-action="Add" enctype="multipart/form-data">
+	<div asp-validation-summary="All" class="text-danger"></div>
+	<div class="form-group">
+		<label asp-for="Name"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Price"></label>
+		<input asp-for="Price" class="form-control" />
+		<span asp-validation-for="Price" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Description"></label>
+		<textarea asp-for="Description" class="form-control"></textarea>
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="CategoryId">Category</label>
+		<select asp-for="CategoryId" asp-items="ViewBag.Categories"
+				class="form-control"></select>
+	</div>
+
+
+	<div class="form-group">
+		<label asp-for="ImageUrl">Image</label>
+		<input type="file" asp-for="ImageUrl" class="form-control" />
+	</div>
+	<!-- Thêm trường để upload nhiều ảnh -->
+	<div class="form-group">
+		<label>Multiple Images</label>
+		<input type="file" name="imageUrls" class="form-control" multiple />
+	</div>
+
+	<button type="submit" class="btn btn-primary">Add</button>
+	<div>
+		<a href="your-list-page.html" style="color: red;">Back To List</a>
+	</div>
+
+	
+
+</form>

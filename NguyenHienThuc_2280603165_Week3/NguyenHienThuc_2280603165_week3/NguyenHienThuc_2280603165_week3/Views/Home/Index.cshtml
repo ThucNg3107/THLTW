@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@model IEnumerable<NguyenHienThuc_2280603165_week3.Models.Product>
+<h2>Products</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+            <th>Ảnh SP</th>
+            <th>Loại</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Description</td>
+                    <td>@product.Category?.Name ?? "No Category"</td>
+                    <td>
+                        <a asp-action="Display" asp-routeid="@product.Id">View</a> |
+                        <a asp-action="Update" asp-routeid="@product.Id">Edit</a> |
+                        <a asp-action="Delete" asp-routeid="@product.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">Lập trình C</td>
+                <td colspan="6">234,000,00 đ</td>
+                <td colspan="7">Sách bộ môn CNPM</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
