@@ -1,0 +1,46 @@
+﻿@model IEnumerable<_2280603165_NguyenHienThuc_Week3.Models.Product>
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<h2>Product List</h2>
+
+<a href="/Product/Add" class="btn btn-success mb-3">Add Product</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@String.Format("{0:N0} đ", item.Price)</td>
+                <td>@item.Description</td>
+                <td>@item.Category?.Name</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" width="100" />
+                    }
+                </td>
+                <td>
+                    <a href="/Product/Update/@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/Product/Delete/@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="/Product/Display/@item.Id" class="btn btn-info btn-sm">View</a>
+
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
