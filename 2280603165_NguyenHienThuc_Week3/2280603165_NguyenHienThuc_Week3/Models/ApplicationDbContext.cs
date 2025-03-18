@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using _2280603165_NguyenHienThuc_Week3.Models;
+﻿using _2280603165_NguyenHienThuc_Week3.Models;
 using Microsoft.EntityFrameworkCore;
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+public class ApplicationDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext>
+   options) : base(options)
     {
     }
     public DbSet<Product> Products { get; set; }

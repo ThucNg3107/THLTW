@@ -1,28 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using _2280603165_NguyenHienThuc_Week3.Repositories;
-using _2280603165_NguyenHienThuc_Week3.Models;
-//using _2280603165_NguyenHienThuc_Week3.DataAccess;
-//using WebsiteBanHang.DataAccess;
-//using WebsiteBanHang.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
-
-
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-     .AddDefaultTokenProviders()
-     .AddDefaultUI()
-     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages();
-
-
-
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -45,9 +27,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
-
-app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
