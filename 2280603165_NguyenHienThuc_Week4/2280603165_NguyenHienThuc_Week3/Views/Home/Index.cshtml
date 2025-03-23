@@ -1,54 +1,20 @@
-﻿@model IEnumerable<_2280603165_NguyenHienThuc_Week3.Models.Product>
+﻿<section id="gioi-thieu" class="container my-5">
+    <h2 class="text-center mb-4">Giới Thiệu</h2>
+    <div class="row align-items-center">
+        <!-- Hình ảnh minh họa -->
+        <div class="col-md-6 mb-4 mb-md-0">
+            <img src="https://arito.vn/wp-content/uploads/2024/02/Screenshot-2024-02-13-at-21.57.23.png" alt="Thư viện hiện đại" class="img-fluid rounded shadow">
+        </div>
 
-<h2 class="mt-4 mb-4">Products</h2>
-<a asp-controller="Product" asp-action="Add" class="btn btn-success mb-3">Thêm sản phẩm</a>
-
-
-
-<table class="table table-bordered table-striped text-center align-middle">
-    <thead class="table-light">
-        <tr>
-            <th>Tên</th>
-            <th>Giá</th>
-            <th>Mô tả</th>
-            <th>Ảnh sản phẩm</th>
-            <th>Loại</th>
-            <th>Chức năng</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            foreach (var product in Model)
-            {
-                <tr>
-                    <td>@product.Name</td>
-                    <td>@string.Format("{0:N0} đ", product.Price)</td>
-                    <td>@product.Description</td>
-                    <td>
-                        @if (!string.IsNullOrEmpty(product.ImageUrl))
-                        {
-                            <img src="@product.ImageUrl" alt="Product Image" style="width: 60px; height: auto;" />
-                        }
-                        else
-                        {
-                            <span>Không có ảnh</span>
-                        }
-                    </td>
-                    <td>@product.Category?.Name ?? "No Category"</td>
-                    <td>
-                        <a asp-action="Display" asp-route-id="@product.Id" style="color: blue";class="btn btn-primary btn-sm me-1">View</a>
-                        <a asp-action="Update" asp-route-id="@product.Id" class="btn btn-info btn-sm text-white me-1">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@product.Id" style="color: red";class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="6">No products found</td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <!-- Nội dung giới thiệu -->
+        <div class="col-md-6">
+            <p class="fs-5 text-muted">
+                HỆ THỐNG QUẢN LÝ BÁN HÀNG <strong>THUCNGUYEN Sales</strong> được xây dựng với mục tiêu mang đến một giải pháp quản lý bán hàng hiện đại, dễ sử dụng và thân thiện với người dùng. Đây là công cụ hỗ trợ toàn diện trong việc quản lý sản phẩm, danh mục, đơn hàng, khách hàng và quá trình bán hàng một cách nhanh chóng và hiệu quả.
+            </p>
+            
+            <p class="fs-5 text-muted">
+                PHT Sales không chỉ là công cụ quản lý sản phẩm hiệu quả mà còn hỗ trợ doanh nghiệp theo dõi hoạt động kinh doanh, chăm sóc khách hàng và tối ưu quy trình bán hàng. Giao diện được thiết kế thân thiện với người dùng, đảm bảo tính thẩm mỹ và hiệu quả sử dụng cao. Các chức năng được bố trí khoa học, giúp việc quản lý trở nên dễ dàng và chuyên nghiệp hơn bao giờ hết.
+            </p>
+        </div>
+    </div>
+</section>
