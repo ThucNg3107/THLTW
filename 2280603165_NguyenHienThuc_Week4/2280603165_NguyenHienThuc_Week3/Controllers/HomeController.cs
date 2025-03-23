@@ -28,5 +28,9 @@ namespace _2280603165_NguyenHienThuc_Week3.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult lienhe()
+        {
+            return View();
+        }
     }
 }
