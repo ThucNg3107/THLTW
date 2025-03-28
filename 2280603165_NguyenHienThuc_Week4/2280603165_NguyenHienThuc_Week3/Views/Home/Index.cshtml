@@ -1,20 +1,37 @@
-﻿<section id="gioi-thieu" class="container my-5">
-    <h2 class="text-center mb-4">Giới Thiệu</h2>
-    <div class="row align-items-center">
-        <!-- Hình ảnh minh họa -->
-        <div class="col-md-6 mb-4 mb-md-0">
-            <img src="https://arito.vn/wp-content/uploads/2024/02/Screenshot-2024-02-13-at-21.57.23.png" alt="Thư viện hiện đại" class="img-fluid rounded shadow">
-        </div>
+﻿@model IEnumerable<_2280603165_NguyenHienThuc_Week3.Models.Product>
+@{
+	ViewData["Title"] = "Home Page";
+	int numOfQuantity = 1;
+}	
+<section class="py-2">
+	<div class="container px-4 px-lg-5 mt-5">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justifycontent-center">
 
-        <!-- Nội dung giới thiệu -->
-        <div class="col-md-6">
-            <p class="fs-5 text-muted">
-                HỆ THỐNG QUẢN LÝ BÁN HÀNG <strong>THUCNGUYEN Sales</strong> được xây dựng với mục tiêu mang đến một giải pháp quản lý bán hàng hiện đại, dễ sử dụng và thân thiện với người dùng. Đây là công cụ hỗ trợ toàn diện trong việc quản lý sản phẩm, danh mục, đơn hàng, khách hàng và quá trình bán hàng một cách nhanh chóng và hiệu quả.
-            </p>
-            
-            <p class="fs-5 text-muted">
-                PHT Sales không chỉ là công cụ quản lý sản phẩm hiệu quả mà còn hỗ trợ doanh nghiệp theo dõi hoạt động kinh doanh, chăm sóc khách hàng và tối ưu quy trình bán hàng. Giao diện được thiết kế thân thiện với người dùng, đảm bảo tính thẩm mỹ và hiệu quả sử dụng cao. Các chức năng được bố trí khoa học, giúp việc quản lý trở nên dễ dàng và chuyên nghiệp hơn bao giờ hết.
-            </p>
-        </div>
-    </div>
+			@foreach (var item in Model)
+			{
+				<div class="col mb-5">
+					<div class="card gap-3" style="width: 18rem">
+						<img src="@item.ImageUrl" class="card-img-top" alt="..."
+							 style="height: 300px">
+						<div class="card-body">
+							<h5 class="card-title">
+								@Html.DisplayFor(modelItem =>
+																	item.Name)
+							</h5>
+							<div class="d-flex">
+								<span>Price: </span>
+								<p class="mx-3">@item.Price.ToString("#,##0") Vnđ</p>
+							</div>
+							<a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productId="@item.Id"
+							asp-route-quantity="@numOfQuantity">
+								<button class="btn btn-outline-dark">
+									<i class="bi-cart-fill me-1"></i> Add to Cart
+								</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
 </section>

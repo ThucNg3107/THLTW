@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Shopping Cart";
+}
+@model ShoppingCart
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">My Cart</h2>
+        </div>
+        <div class="card-body">
+            @if (Model.Items.Count == 0)
+            {
+                <p class="text-center text-muted">Your cart is empty.</p>
+            }
+            else
+            {
+                <table class="table table-striped table-bordered table-hover text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId" class="text-decoration-none">
+                                        @item.Name
+                                    </a>
+                                </td>
+                                <td>
+                                    <form asp-action="UpdateQuantity" method="post" class="d-inline">
+                                        <input type="hidden" name="ProductId" value="@item.ProductId" />
+                                        <input type="number" name="Quantity" value="@item.Quantity" class="form-control text-center d-inline-block" style="width: 60px;" min="1">
+                                    </form>
+                                    
+                                </td>
+                                <td>@item.Price.ToString("C")</td>
+                                <td>@(item.Price * item.Quantity).ToString("C")</td>
+                                <td>
+                                    <a asp-controller="Product" asp-action="Display" asp-route-id="@item.ProductId" class="btn btn-info btn-sm">
+                                        <i class="fas fa-info-circle"></i> View
+                                    </a>
+                                    <a asp-controller="Product" asp-action="Update" asp-route-id="@item.ProductId" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-info-circle"></i> Update
+                                    </a>
+                                    <a asp-action="RemoveFromCart" asp-route-productId="@item.ProductId" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="card-footer text-end">
+            <a asp-action="Checkout" class="btn btn-success">Proceed to Checkout</a>
+        </div>
+    </div>
+</div>
